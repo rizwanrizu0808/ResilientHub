@@ -44,23 +44,27 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader />
-      <main className="container mx-auto px-4 py-8">
-        <div className="space-y-8">
+      <main className="container mx-auto px-3 sm:px-4 py-4 md:py-8 pb-20 md:pb-8">
+        <div className="space-y-6 md:space-y-8">
           <section>
-            <h2 className="text-xl font-semibold mb-4">Overview</h2>
+            <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Overview</h2>
             <DashboardStats />
           </section>
 
           <section>
             <Tabs defaultValue="inventory" className="w-full">
-              <TabsList className="grid w-full max-w-md grid-cols-2">
-                <TabsTrigger value="inventory">Inventory</TabsTrigger>
-                <TabsTrigger value="resources">Resources</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="inventory" className="text-sm md:text-base">
+                  Inventory
+                </TabsTrigger>
+                <TabsTrigger value="resources" className="text-sm md:text-base">
+                  Resources
+                </TabsTrigger>
               </TabsList>
-              <TabsContent value="inventory" className="mt-6">
+              <TabsContent value="inventory" className="mt-4 md:mt-6">
                 <InventoryTable />
               </TabsContent>
-              <TabsContent value="resources" className="mt-6">
+              <TabsContent value="resources" className="mt-4 md:mt-6">
                 <ResourcesList />
               </TabsContent>
             </Tabs>

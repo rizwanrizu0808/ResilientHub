@@ -65,34 +65,65 @@ export const ResourcesList = () => {
       </CardHeader>
       <CardContent>
         {resources && resources.length > 0 ? (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Unit</TableHead>
-                <TableHead>Description</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Card View */}
+            <div className="block md:hidden space-y-4">
               {resources.map((resource) => (
-                <TableRow key={resource.id}>
-                  <TableCell className="font-medium">{resource.name}</TableCell>
-                  <TableCell>
-                    <Badge variant={getTypeVariant(resource.type)}>
-                      {resource.type}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {resource.unit_of_measure}
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
-                    {resource.description || "—"}
-                  </TableCell>
-                </TableRow>
+                <Card key={resource.id} className="border-l-4 border-l-primary">
+                  <CardContent className="pt-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-semibold text-base">{resource.name}</h3>
+                      <Badge variant={getTypeVariant(resource.type)}>
+                        {resource.type}
+                      </Badge>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Unit:</span> {resource.unit_of_measure}
+                      </p>
+                      {resource.description && (
+                        <p className="text-muted-foreground">
+                          <span className="font-medium">Description:</span> {resource.description}
+                        </p>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Unit</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {resources.map((resource) => (
+                    <TableRow key={resource.id}>
+                      <TableCell className="font-medium">{resource.name}</TableCell>
+                      <TableCell>
+                        <Badge variant={getTypeVariant(resource.type)}>
+                          {resource.type}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-muted-foreground">
+                        {resource.unit_of_measure}
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {resource.description || "—"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         ) : (
           <p className="text-center text-muted-foreground py-8">
             No resources found. Add your first resource to get started.
