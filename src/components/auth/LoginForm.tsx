@@ -74,6 +74,21 @@ export const LoginForm = () => {
           <CardDescription className="text-sm">
             {isLogin ? "Sign in to your account" : "Create a new account"}
           </CardDescription>
+          {isLogin && (
+            <div className="mt-3 p-3 bg-muted/50 rounded-md border border-border">
+              <p className="text-xs font-medium text-muted-foreground mb-1">Demo Credentials:</p>
+              <p className="text-xs font-mono">Email: demo@emergency.org</p>
+              <p className="text-xs font-mono">Password: demo123456</p>
+            </div>
+          )}
+          {!isLogin && (
+            <div className="mt-3 p-3 bg-muted/50 rounded-md border border-border">
+              <p className="text-xs text-muted-foreground">
+                Email format: name@example.com<br />
+                Password: minimum 6 characters
+              </p>
+            </div>
+          )}
         </CardHeader>
         <CardContent className="px-4 sm:px-6">
           <form onSubmit={handleSubmit} className="space-y-4">
