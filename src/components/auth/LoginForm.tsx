@@ -77,7 +77,7 @@ export const LoginForm = () => {
           {isLogin && (
             <div className="mt-3 p-3 bg-muted/50 rounded-md border border-border">
               <p className="text-xs font-medium text-muted-foreground mb-1">Demo Credentials:</p>
-              <p className="text-xs font-mono">Email: demo@emergency.com</p>
+              <p className="text-xs font-mono">Email: demo@gmail.com</p>
               <p className="text-xs font-mono">Password: demo123456</p>
             </div>
           )}
