@@ -33,6 +33,9 @@ export const LoginForm = () => {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/`,
+          },
         });
         if (error) throw error;
         toast({
@@ -41,9 +44,19 @@ export const LoginForm = () => {
         });
       }
     } catch (error: any) {
+      let description = error.message;
+      
+      // Provide helpful messages for common errors
+      if (error.message.includes("Invalid login credentials")) {
+        description = "Invalid email or password. Please check your credentials and try again.";
+      } else if (error.message.includes("User already registered")) {
+        description = "This email is already registered. Please sign in instead.";
+        setIsLogin(true); // Switch to login mode
+      }
+      
       toast({
         title: "Error",
-        description: error.message,
+        description,
         variant: "destructive",
       });
     } finally {
